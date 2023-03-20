@@ -73,3 +73,5 @@ https://user-images.githubusercontent.com/86384730/226221759-cd75954e-70fb-4db0-
 
 
 ### [Implementation Video Link](https://drive.google.com/file/d/1n5SmnlW9Tq08KdRU7UKI8Rp8X4Ycr2td/view?usp=share_link)
+### Video URL
+https://drive.google.com/file/d/1n5SmnlW9Tq08KdRU7UKI8Rp8X4Ycr2td/view?usp=share_link
