@@ -225,7 +225,7 @@ def A_Star(start,goal,map_width,map_height,step_size,ObstacleList):
                     coord_round = (round(coord[0]),round(coord[1]),coord[2])
                     closed_list.append(coord_round)
                     Cost2Come = cost # g(n)
-                    Cost2Go = Euclidean((coord[0],coord[1]),(goal[0],goal[1]))  # h(n)
+                    Cost2Go = math. dist((coord[0],coord[1]),(goal[0],goal[1]))  # h(n)
                     TotalCost = Cost2Come + Cost2Go   # f(n)
                     
                     if TotalCost < cost_list[coord] or coord not in open_list :
