@@ -2,8 +2,10 @@
 Project - 03 (Phase 01) for the course ENPM661 - Planning for Autonomous Robots
 
 ## Team Members
-- Mothish Raj Venkatesan Kumararaj (mr2997@umd.edu)
-- Satish Vennapu (satish@umd.edu)
+- Mothish Raj Venkatesan Kumararaj (mr2997@umd.edu)   Directory ID: mr2997    UID: 117553727 
+
+
+- Satish Vennapu (satish@umd.edu)    Directory ID : satish     UID : 118306759
 
 ## Project Description
 Implement A* Algorithm to find a path between the start and end point on a given map for a mobile
