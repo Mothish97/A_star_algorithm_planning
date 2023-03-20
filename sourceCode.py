@@ -67,7 +67,7 @@ def getObstacleCoord(mapWidth,mapHeight):
     for i in range(mapWidth ): 
         for j in range(mapHeight ): 
             coords.append((i,j)) 
-    
+    #Scaling the obstacle to make sure we include the .5 thresold
     for i in range(mapWidth*2 ): 
         for j in range(mapHeight*2 ): 
             coords_scaled.append((round(i/2),round(j/2))) 
@@ -329,6 +329,12 @@ def visualize_map(map_width,map_height,obstacle_scaled,obstacle_cord,closed_list
     cv2.destroyAllWindows()
     
 
+
+"""
+----------------------------------------------------------------
+Main Function
+---------------------------------------------------------------- 
+"""
 
 obstacle_scaled,obstacle_cord =getObstacleCoord(600,250)
 map_width=600
