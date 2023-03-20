@@ -297,7 +297,7 @@ def visualize_map(map_width,map_height,obstacle_scaled,obstacle_cord,closed_list
     pygame.init()
     gameDisplay = pygame.display.set_mode((map_width*2,map_height*2))
     pygame.surfarray.make_surface(obstacle_map)
-    pygame.display.set_caption('Dijkstra Algorithm')
+    pygame.display.set_caption('A Star Algorithm')
     
     gameDisplay.fill((0,0,0))
     #Adding obstacle to animation
