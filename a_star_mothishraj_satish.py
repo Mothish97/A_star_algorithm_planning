@@ -278,7 +278,7 @@ def get_Backtrack(parent_index,goal,start):
                         is_loading_backtrack = True
                         
                         break
-
+    back_track.append(goal)
     return back_track
 
 
