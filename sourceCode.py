@@ -18,14 +18,15 @@ import sys
 import matplotlib.pyplot as plt
 
 
+"""
+----------------------------------------------------------------
+Loading animation 
+---------------------------------------------------------------- 
+"""
+
+
 is_loading_a_star = False
 is_loading_backtrack = False
- # calculates Eucilidean distance between two nodes
-def Euclidean(node1,node2):  
-    x1, x2 = node1[0], node2[0]
-    y1, y2 = node1[1], node2[1]
-    distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)  
-    return (distance)  
 
 
 def animate_A_star():
@@ -145,6 +146,7 @@ def getObstacleCoord(mapWidth,mapHeight):
 Action set
 ---------------------------------------------------------------- 
 """
+# We have created a funstion that can accomodate any angles 
 def action_set(step_size,coord, orientation,map_width,map_height):
     x = round((step_size)*np.cos(np.deg2rad(orientation)) + coord[0],2)
     y = round((step_size)*np.sin(np.deg2rad(orientation)) + coord[1],2)
@@ -207,6 +209,7 @@ def A_Star(start,goal,map_width,map_height,step_size,ObstacleList):
     loading = threading.Thread(target=animate_A_star)
     loading.start()
     global is_loading_a_star
+    #Converting to set for faster checking 
     obs_set = set(ObstacleList)
     
     while len(open_list)>0 and Goal_Reached == False:
@@ -224,7 +227,7 @@ def A_Star(start,goal,map_width,map_height,step_size,ObstacleList):
                 if(coord not in  closed_list) and (coord not in ObstacleList):
                     coord_round = (round(coord[0]),round(coord[1]),coord[2])
                     closed_list.append(coord_round)
-                    Cost2Come = cost # g(n)
+                    Cost2Come = cost 
                     Cost2Go = math. dist((coord[0],coord[1]),(goal[0],goal[1]))  # h(n)
                     TotalCost = Cost2Come + Cost2Go   # f(n)
                     
@@ -234,7 +237,7 @@ def A_Star(start,goal,map_width,map_height,step_size,ObstacleList):
                         parent_index[coord_round][TotalCost] = parent_coord
                         cost_list[coord_round]=TotalCost
                         heapq.heappush(open_list, (TotalCost, coord_round))
-    
+                    #The thersold is set according to the step size to reach closest to goal with few steps
                     if ((coord_round[0]-goal[0])**2 + (coord_round[1]-goal[1])**2 <= (step_size)**2) and coord_round[2]==goal[2] :
                         print("\nFinal Node :",coord_round)
                         print('GOAL  Reached !!')
@@ -247,13 +250,18 @@ def A_Star(start,goal,map_width,map_height,step_size,ObstacleList):
                     
     return parent_index,closed_list,False
                     
-                
+"""
+ ----------------------------------------------------------------
+Backtracking
+ ---------------------------------------------------------------- 
+ """               
 
 def get_Backtrack(parent_index,goal,start):
     back_track = []
     current= start
     back_track.append(current)
     is_goal_reached = False
+    #For loading icon
     global is_loading_backtrack
     loading = threading.Thread(target=animate_Backtrack)
     loading.start()
@@ -292,15 +300,16 @@ def visualize_map(map_width,map_height,obstacle_scaled,obstacle_cord,closed_list
     pygame.display.set_caption('Dijkstra Algorithm')
     
     gameDisplay.fill((0,0,0))
-    #Adding explored region/ visited nodes
+    #Adding obstacle to animation
     for coords in obs_set:
         pygame.draw.rect(gameDisplay, (255,0,255), [coords[0]*2 ,abs(250-coords[1])*2,1,1])
         pygame.display.flip()
+    #Adding explored region/ visited nodes
     for coords in closed_list:
         pygame.time.wait(10)
         pygame.draw.rect(gameDisplay, (255,255,0), [coords[0]*2 ,abs(250-coords[1])*2,1,1])
         pygame.display.flip()
-    #Addinf back track path
+    #Adding back track path
     for coords in back_track_coord:    
         pygame.time.wait(10)
         pygame.draw.rect(gameDisplay, (255,0,0), [coords[0]*2,abs(250-coords[1])*2,1,1])
@@ -328,6 +337,7 @@ step_size=1
 start = (11,11,0)
 goal = (400,100,60)
 
+#Showing the map
 x, y = [], []
 for i in obstacle_scaled:
     x.append(i[0])
@@ -371,7 +381,7 @@ try:
             start = (x_s,y_s,orientation_s) 
             goal =  (x_g,y_g,orientation_g)
             break
-            
+    #since the triangle is obstructing the path to reach we are keeping a threshold for x (Please refer the map )     
     if x_s <460 :
         start_time = time.time()
         parent_index,closed_list,goal_new,isGoal = A_Star(start,goal,map_width,map_height,3,obstacle_scaled)
