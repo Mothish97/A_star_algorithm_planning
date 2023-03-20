@@ -33,7 +33,7 @@ robot (radius = 5mm; clearance = 5 mm).
 
 ### Steps to run the implementation
 ```
-git clone:  
+git clone:  https://github.com/Mothish97/A_star_algorithm_planning.git
 ```
 1. Clone the repository
 2. Install latest version of Python and the required libraries mentinoned above prior to running the code
